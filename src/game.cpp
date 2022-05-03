@@ -1,14 +1,18 @@
 #include "game.h"
 #include "TextureManager.h"
-#include "GameObject.h"
 #include <sstream>
 #include "Map.h"
+#include "Components.h"
+#include "Vector2D.h"
 
 SDL_Renderer *Game::ren = nullptr;
 SDL_Event Game::event;
 
-GameObject *player, *enemy;
 Map* map;
+
+Manager manager;
+
+auto& Player(manager.addEntity());
 
 Game::Game()
 {
@@ -42,9 +46,12 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
     isRunning = true;
 
-    player = new GameObject("Assets/mario.png", 0, 0);
-    enemy = new GameObject("Assets/luigi.png", 300, 100);
     map = new Map();
+
+    Player.addComponent<TransformComponent>(50,50);
+    Player.addComponent<SpriteComponent>("Assets/luigi.png");
+    Player.addComponent<Controller>();
+    // Player.getComponent<TransformComponent>().setVelocity(1,0);
 }
 
 void Game ::handleEvents()
@@ -64,16 +71,19 @@ void Game ::handleEvents()
 void Game::update()
 {
     //count++;
-    player->Update();
-    enemy->Update();
+    manager.refresh();
+    manager.update();
+    //Player.getComponent<TransformComponent>().position.Add(Vector2D(2,0));
+    if(Player.getComponent<TransformComponent>().position.x > 75.0f){
+        Player.getComponent<SpriteComponent>().setTexture("Assets/bg.png");
+    }
 }
 
 void Game::render()
 {
     SDL_RenderClear(ren);
     map->DrawMap();
-    player->Render();
-    enemy->Render();
+    manager.draw();
     SDL_RenderPresent(ren);
 }
 
