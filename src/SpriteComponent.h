@@ -29,8 +29,8 @@ public:
     {   
         transform = &entity->getComponent<TransformComponent>();
         srcRect.x = srcRect.y = 0;
-        srcRect.w = srcRect.h = 320;
-        destRect.w = destRect.h = 64;
+        srcRect.w = transform->width;
+        srcRect.h = transform->height;
 
     } 
 
@@ -38,6 +38,8 @@ public:
     {
         destRect.x = (int)transform->position.x;
         destRect.y = (int)transform->position.y;
+        destRect.w = transform->scale * transform->width;
+        destRect.h = transform->scale * transform->height;
     }
 
     void draw() override

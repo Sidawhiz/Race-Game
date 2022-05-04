@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "Components.h"
 #include "Vector2D.h"
+#include "Collision.h"
 
 SDL_Renderer *Game::ren = nullptr;
 SDL_Event Game::event;
@@ -13,6 +14,7 @@ Map* map;
 Manager manager;
 
 auto& Player(manager.addEntity());
+auto& wall(manager.addEntity());
 
 Game::Game()
 {
@@ -51,7 +53,12 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     Player.addComponent<TransformComponent>(50,50);
     Player.addComponent<SpriteComponent>("Assets/luigi.png");
     Player.addComponent<Controller>();
+    Player.addComponent<ColliderComponent>("player");
     // Player.getComponent<TransformComponent>().setVelocity(1,0);
+
+    wall.addComponent<TransformComponent>(100,100,32,5,8);
+    wall.addComponent<SpriteComponent>("Assets/bg.png");
+    wall.addComponent<ColliderComponent>("wall");
 }
 
 void Game ::handleEvents()
@@ -74,8 +81,13 @@ void Game::update()
     manager.refresh();
     manager.update();
     //Player.getComponent<TransformComponent>().position.Add(Vector2D(2,0));
-    if(Player.getComponent<TransformComponent>().position.x > 75.0f){
-        Player.getComponent<SpriteComponent>().setTexture("Assets/bg.png");
+    // if(Player.getComponent<TransformComponent>().position.x > 75.0f){
+    //     Player.getComponent<SpriteComponent>().setTexture("Assets/bg.png");
+    // }
+    ColliderComponent a = Player.getComponent<ColliderComponent>();
+    ColliderComponent b = wall.getComponent<ColliderComponent>();
+    if(Collision::coll(a.collider,b.collider)){
+        std::cout << "Collision Detected" << std::endl;
     }
 }
 

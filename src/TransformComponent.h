@@ -9,10 +9,11 @@ public:
 
     Vector2D position;
     Vector2D velocity;
-    int speed = 2;
     std::string tagged = "";
-    // float fx = 1.0f;
-    // float fy = 1.0f;
+    int height = 40;
+    int width = 40;
+    int scale = 1;
+    int speed = 2;
 
     TransformComponent(){
         position.Zero();
@@ -33,6 +34,21 @@ public:
         position.x = x;
         position.y = y;
         speed = spd;
+    }
+
+    TransformComponent(int sc)
+    {
+        position.Zero();
+        scale = sc;
+    }
+
+    TransformComponent(float x, float y, int h, int w, int sc)
+    {
+        position.x = x;
+        position.y = y;
+        height = h;
+        width = w;
+        scale = sc;
     }
 
     TransformComponent(float x, float y, std::string tag1)
