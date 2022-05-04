@@ -8,6 +8,7 @@
 
 SDL_Renderer *Game::ren = nullptr;
 SDL_Event Game::event;
+std::vector<ColliderComponent *> Game::colliders;
 
 Map* map;
 
@@ -15,6 +16,9 @@ Manager manager;
 
 auto& Player(manager.addEntity());
 auto& wall(manager.addEntity());
+auto& tile0(manager.addEntity());
+auto& tile1(manager.addEntity());
+auto& tile2(manager.addEntity());
 
 Game::Game()
 {
@@ -59,6 +63,15 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     wall.addComponent<TransformComponent>(100,100,32,5,8);
     wall.addComponent<SpriteComponent>("Assets/bg.png");
     wall.addComponent<ColliderComponent>("wall");
+
+    tile0.addComponent<TileComponent>(200,200,32, 32, 3);
+    tile0.addComponent<ColliderComponent>("tile0");
+    tile1.addComponent<TileComponent>(250,250,32, 32, 3);
+    tile1.addComponent<ColliderComponent>("tile1");
+    tile2.addComponent<TileComponent>(300,300,32, 32, 3);
+    tile2.addComponent<ColliderComponent>("tile2");
+
+
 }
 
 void Game ::handleEvents()
@@ -78,7 +91,6 @@ void Game ::handleEvents()
 void Game::update()
 {
     //count++;
-    manager.refresh();
     manager.update();
     //Player.getComponent<TransformComponent>().position.Add(Vector2D(2,0));
     // if(Player.getComponent<TransformComponent>().position.x > 75.0f){
@@ -86,15 +98,19 @@ void Game::update()
     // }
     ColliderComponent a = Player.getComponent<ColliderComponent>();
     ColliderComponent b = wall.getComponent<ColliderComponent>();
-    if(Collision::coll(a.collider,b.collider)){
-        std::cout << "Collision Detected" << std::endl;
-    }
+    for(auto cc : colliders){
+        if(Collision::coll(a,*cc)){
+            // Player.getComponent<TransformComponent>().scale=1;
+            // Player.getComponent<TransformComponent>().velocity*-1;
+            std::cout << "Collision Detected" << std::endl;
+        }
+    }    
 }
 
 void Game::render()
 {
     SDL_RenderClear(ren);
-    map->DrawMap();
+    //map->DrawMap();
     manager.draw();
     SDL_RenderPresent(ren);
 }

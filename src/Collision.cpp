@@ -1,5 +1,6 @@
 #include "Collision.h"
-#include "ColliderComponent.h"
+
+class ColliderComponent;
 
 bool Collision::coll(const SDL_Rect& rec1, const SDL_Rect& rec2)
 {

@@ -6,3 +6,4 @@
 #include "GameObject.h"
 #include "Controller.h"
 #include "ColliderComponent.h"
+#include "TileComponent.h"
