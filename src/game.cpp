@@ -20,6 +20,15 @@ auto& tile0(manager.addEntity());
 auto& tile1(manager.addEntity());
 auto& tile2(manager.addEntity());
 
+enum groupLabels : std::size_t
+{
+    groupMap,
+    groupPlayers,
+    groupEnemies,
+    groupColliders,
+    groupCollectibles
+};
+
 Game::Game()
 {
 }
@@ -54,24 +63,57 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
     map = new Map();
 
-    Player.addComponent<TransformComponent>(50,50);
-    Player.addComponent<SpriteComponent>("Assets/luigi.png");
+    Map::LoadMap();
+
+    Player.addComponent<TransformComponent>(50,50,32,32,1);
+    Player.addComponent<SpriteComponent>("Assets/player.png");
     Player.addComponent<Controller>();
     Player.addComponent<ColliderComponent>("player");
+    Player.addGroup(groupPlayers);
     // Player.getComponent<TransformComponent>().setVelocity(1,0);
 
-    wall.addComponent<TransformComponent>(100,100,32,5,8);
-    wall.addComponent<SpriteComponent>("Assets/bg.png");
-    wall.addComponent<ColliderComponent>("wall");
+    // wall.addComponent<TransformComponent>(100,100,32,5,8);
+    // wall.addComponent<SpriteComponent>("Assets/bg.png");
+    // wall.addComponent<ColliderComponent>("wall");
+    // wall.addGroup(groupMap);
 
-    tile0.addComponent<TileComponent>(200,200,32, 32, 3);
-    tile0.addComponent<ColliderComponent>("tile0");
-    tile1.addComponent<TileComponent>(250,250,32, 32, 3);
-    tile1.addComponent<ColliderComponent>("tile1");
-    tile2.addComponent<TileComponent>(300,300,32, 32, 3);
-    tile2.addComponent<ColliderComponent>("tile2");
+    // tile0.addComponent<TileComponent>(200,200,32, 32, 3);
+    // tile0.addComponent<ColliderComponent>("tile0");
+    // tile1.addComponent<TileComponent>(250,250,32, 32, 3);
+    // tile1.addComponent<ColliderComponent>("tile1");
+    // tile2.addComponent<TileComponent>(300,300,32, 32, 3);
+    // tile2.addComponent<ColliderComponent>("tile2");
 
 
+}
+
+auto &players(manager.getGroup(groupPlayers));
+auto &tiles(manager.getGroup(groupMap));
+auto &enemies(manager.getGroup(groupEnemies));
+auto &collectibles(manager.getGroup(groupCollectibles));
+
+void Game::AddTile(int id, int x, int y)
+{
+    auto &tile(manager.addEntity());
+    tile.addComponent<TileComponent>(x, y, 32, 32, id); // size of input tile
+    // 1 = wall, 2 = bg , 3 = foodstall
+    if (id >= 1 && id<=5 && id!=2)
+    {
+        tile.addComponent<ColliderComponent>("obstacle");
+    }
+    tile.addGroup(groupMap);
+}
+
+void Game::AddCollectible(int id, int x, int y)
+{
+    auto &collectibles(manager.addEntity());
+    collectibles.addComponent<CollectibleComponent>(x, y, 32, 32, id);
+    if (id == 2)
+    {
+        collectibles.addComponent<ColliderComponent>("collectible");
+    }
+    collectibles.addGroup(groupCollectibles);
+    // collectibleStatus.push_back(std::make_pair(std::make_pair(x, y), true));
 }
 
 void Game ::handleEvents()
@@ -97,11 +139,10 @@ void Game::update()
     //     Player.getComponent<SpriteComponent>().setTexture("Assets/bg.png");
     // }
     ColliderComponent a = Player.getComponent<ColliderComponent>();
-    ColliderComponent b = wall.getComponent<ColliderComponent>();
     for(auto cc : colliders){
-        if(Collision::coll(a,*cc)){
-            // Player.getComponent<TransformComponent>().scale=1;
-            // Player.getComponent<TransformComponent>().velocity*-1;
+        if(cc->tag=="obstacle" && Collision::coll(a,*cc)){
+            //Player.getComponent<TransformComponent>().scale=1;
+            Player.getComponent<TransformComponent>().velocity*-1;
             std::cout << "Collision Detected" << std::endl;
         }
     }    
@@ -110,8 +151,23 @@ void Game::update()
 void Game::render()
 {
     SDL_RenderClear(ren);
+    
     //map->DrawMap();
-    manager.draw();
+    for(auto& t : tiles){
+        t->draw();
+        //sssstd::cout << "Bi" << std::endl;
+    }
+    for(auto& e : enemies){
+        e->draw();
+    }
+    for(auto& p : players){
+        p->draw();
+    }
+
+    for(auto& c : collectibles){
+        c->draw();
+    }
+
     SDL_RenderPresent(ren);
 }
 

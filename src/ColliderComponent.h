@@ -32,18 +32,18 @@ public:
         collider.y = static_cast<int> (transform->position.y) ;
         collider.w = transform->scale * transform->width;
         collider.h = transform->scale * transform->height;
-        // if (tag == "collectible"){
-        //     collider.x = static_cast<int> (transform->position.x) +10;
-        //     collider.y = static_cast<int> (transform->position.y) +10;
-        //     collider.w = 20;
-        //     collider.h = 20;
-        // }
-        // else {
-        //     collider.x = static_cast<int> (transform->position.x) +3;
-        //     collider.y = static_cast<int> (transform->position.y) +3;
-        //     collider.w = 34;
-        //     collider.h = 34;
-        // }
+        if (tag == "collectible"){
+            collider.x = static_cast<int> (transform->position.x) +10;
+            collider.y = static_cast<int> (transform->position.y) +10;
+            collider.w = 20;
+            collider.h = 20;
+        }
+        else {
+            collider.x = static_cast<int> (transform->position.x) +3;
+            collider.y = static_cast<int> (transform->position.y) +3;
+            collider.w = 26;
+            collider.h = 26;
+        }
     }
 
     void Destroy()

@@ -16,8 +16,11 @@ int main()
         //std::cout << game->count << std::endl;
         frameStart = SDL_GetTicks();
         game->handleEvents();
+        // std::cout << 1 << std::endl;
         game->update();
+        // std::cout << 2 << std::endl;
         game->render();
+        // std::cout << 3 << std::endl;
         frameTime = SDL_GetTicks() - frameStart;
         if (frameDelay > frameTime)
         {

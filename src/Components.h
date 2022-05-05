@@ -7,3 +7,4 @@
 #include "Controller.h"
 #include "ColliderComponent.h"
 #include "TileComponent.h"
+#include "CollectibleComponent.h"
