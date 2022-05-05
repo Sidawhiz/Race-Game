@@ -33,9 +33,9 @@ public:
     static std::vector<ColliderComponent *> colliders;
     static void AddTile(int id, int x, int y);
     static void AddCollectible(int id, int x, int y);
+    static bool isRunning;
 
 private:
-    bool isRunning;
     SDL_Window *win;
 };
 

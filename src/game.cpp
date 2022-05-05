@@ -9,6 +9,7 @@
 SDL_Renderer *Game::ren = nullptr;
 SDL_Event Game::event;
 std::vector<ColliderComponent *> Game::colliders;
+bool Game::isRunning = false;
 
 Map* MAP;
 
@@ -65,7 +66,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
     Map::LoadMap();
 
-    Player.addComponent<TransformComponent>(50,50,40,40,1);
+    Player.addComponent<TransformComponent>(0,0,40,40,1);
     Player.addComponent<SpriteComponent>("Assets/xx.png",true);
     Player.addComponent<Controller>();
     Player.addComponent<ColliderComponent>("player");

@@ -89,6 +89,10 @@ public:
                 transform->update();
                 break;
             }
+            case SDLK_ESCAPE:
+            {
+                Game::isRunning=false;
+            }
             default:
             {
                 break;
