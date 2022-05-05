@@ -24,28 +24,28 @@ public:
             {
             case SDLK_w:
             {
+                sprite->Play("moveU");
                 transform->velocity.y = -1;
-                transform->velocity.x = 0;
                 transform->update();
                 break;
             }
             case SDLK_a:
             {
-                transform->velocity.y = 0;
+                sprite->Play("moveL");
                 transform->velocity.x = -1;
                 transform->update();
                 break;
             }
             case SDLK_s:
             {
+                sprite->Play("moveD");
                 transform->velocity.y = 1;
-                transform->velocity.x = 0;
                 transform->update();
                 break;
             }
             case SDLK_d:
             {
-                transform->velocity.y = 0;
+                sprite->Play("moveR");
                 transform->velocity.x = 1;
                 transform->update();
                 break;
@@ -63,29 +63,29 @@ public:
             {
             case SDLK_w:
             {
-                transform->velocity.y = 0;
-                transform->velocity.x = 0;
+                sprite->Play("idleU");
+                transform->velocity.Zero();
                 transform->update();
                 break;
             }
             case SDLK_a:
             {
-                transform->velocity.y = 0;
-                transform->velocity.x = 0;
+                sprite->Play("idleL");
+                transform->velocity.Zero();
                 transform->update();
                 break;
             }
             case SDLK_s:
             {
-                transform->velocity.y = 0;
-                transform->velocity.x = 0;
+                sprite->Play("idleD");
+                transform->velocity.Zero();
                 transform->update();
                 break;
             }
             case SDLK_d:
             {
-                transform->velocity.y = 0;
-                transform->velocity.x = 0;
+                sprite->Play("idleR");
+                transform->velocity.Zero();
                 transform->update();
                 break;
             }

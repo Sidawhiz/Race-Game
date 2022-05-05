@@ -10,7 +10,7 @@ SDL_Renderer *Game::ren = nullptr;
 SDL_Event Game::event;
 std::vector<ColliderComponent *> Game::colliders;
 
-Map* map;
+Map* MAP;
 
 Manager manager;
 
@@ -61,12 +61,12 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
     isRunning = true;
 
-    map = new Map();
+    MAP = new Map();
 
     Map::LoadMap();
 
-    Player.addComponent<TransformComponent>(50,50,32,32,1);
-    Player.addComponent<SpriteComponent>("Assets/player.png");
+    Player.addComponent<TransformComponent>(50,50,40,40,1);
+    Player.addComponent<SpriteComponent>("Assets/xx.png",true);
     Player.addComponent<Controller>();
     Player.addComponent<ColliderComponent>("player");
     Player.addGroup(groupPlayers);

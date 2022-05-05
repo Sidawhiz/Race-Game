@@ -35,14 +35,14 @@ public:
         if (tag == "collectible"){
             collider.x = static_cast<int> (transform->position.x) +10;
             collider.y = static_cast<int> (transform->position.y) +10;
-            collider.w = 20;
-            collider.h = 20;
+            collider.w = 10;
+            collider.h = 10;
         }
         else {
             collider.x = static_cast<int> (transform->position.x) +3;
             collider.y = static_cast<int> (transform->position.y) +3;
-            collider.w = 26;
-            collider.h = 26;
+            collider.w = 35;
+            collider.h = 35;
         }
     }
 
