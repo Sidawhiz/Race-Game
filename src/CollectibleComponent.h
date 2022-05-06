@@ -26,9 +26,12 @@ public:
 
         switch (collectID)
         {
-        case 2:
-            path = "Assets/collect2.png";
+        case 5:
+            path = "Assets/collect1.png";
             break;
+        case 6:
+            path = "Assets/collect3.png";
+            break;    
         default:
             break;
         }

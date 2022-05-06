@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/siddhesh/Ass2/Race-Game'
+g++ ./src/main.cpp ./src/Collision.cpp ./src/game.cpp ./src/entity.cpp ./src/Vector2D.cpp ./src/TextureManager.cpp ./src/GameObject.cpp ./src/Map.cpp -o race_game -lpthread -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -w 
+make: Leaving directory '/home/siddhesh/Ass2/Race-Game'
+ 

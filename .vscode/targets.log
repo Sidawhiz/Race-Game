@@ -1,0 +1,427 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Fri May  6 20:23:47 2022
+
+# Variables
+
+# environment
+GDK_BACKEND = x11
+# environment
+LC_ALL = C
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+SSH_AGENT_LAUNCHER = gnome-keyring
+# environment
+SNAP_INSTANCE_KEY = 
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-00cf34ed-506d-47de-ad03-02d6707964ca.sock
+# environment
+VSCODE_CWD = /home/siddhesh
+# default
+MAKE_COMMAND := make
+# environment
+QT_ACCESSIBILITY = 1
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+SNAP_INSTANCE_NAME = code
+# environment
+GDK_PIXBUF_MODULEDIR = /snap/code/95/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# makefile (from 'makefile', line 12)
+INC_FLAGS := -I ./src -I /usr/include/SDL2
+# default
+.VARIABLES := 
+# environment
+PWD = /home/siddhesh/Ass2/Race-Game
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from 'makefile', line 5)
+INCLUDE_DIRS = ./src /usr/include/SDL2
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = /home/siddhesh/.config/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
+# environment
+LANG = C
+# environment
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.2R81L1
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /home/siddhesh/Ass2/Race-Game
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# makefile (from 'makefile', line 8)
+SRCS := ./src/main.cpp ./src/Collision.cpp ./src/game.cpp ./src/entity.cpp ./src/Vector2D.cpp ./src/TextureManager.cpp ./src/GameObject.cpp ./src/Map.cpp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+ 
+MFLAGS = -pqrR
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# default
+.SHELLFLAGS := -c
+# environment
+WAYLAND_DISPLAY = wayland-0
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# makefile (from 'makefile', line 4)
+SRC_DRS = ./src
+# makefile (from 'makefile', line 1)
+MAKEFILE_LIST := makefile
+# environment
+SNAP_REEXEC = 
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_PID = 2878
+# environment
+XDG_SESSION_TYPE = wayland
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
+# environment
+SESSION_MANAGER = local/siddhesh-virtual-machine:@/tmp/.ICE-unix/1709,unix/siddhesh-virtual-machine:/tmp/.ICE-unix/1709
+# automatic
+*F = $(notdir $*)
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from 'makefile', line 33)
+MKDIR_P = mkdir -p
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile (from 'makefile', line 9)
+OBJS := ./src/main.cpp ./src/Collision.cpp ./src/game.cpp ./src/entity.cpp ./src/Vector2D.cpp ./src/TextureManager.cpp ./src/GameObject.cpp ./src/Map.cpp
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+XMODIFIERS = @im=ibus
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# environment
+SHLVL = 0
+# environment
+MAKELEVEL := 0
+# environment
+IM_CONFIG_CHECK_ENV = 1
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+SNAP_COOKIE = g2hoSZxPCNdNKS3ObFP-WbDntsyzdBTeupEWFLV5rb0E9qco1Y_M
+# environment
+PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+# default
+MAKEFILES := 
+# environment
+LANGUAGE = en_IN:en
+# automatic
+^F = $(notdir $^)
+# environment
+SNAP_USER_COMMON = /home/siddhesh/snap/code/common
+# makefile (from 'makefile', line 15)
+LDLIBS = -lpthread -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -w 
+# environment
+SNAP = /snap/code/95
+# environment
+INVOCATION_ID = 20059e51273343b5b16c2734c0695aee
+# environment
+SNAP_REVISION = 95
+# environment
+SNAP_REAL_HOME = /home/siddhesh
+# environment
+VSCODE_LOG_NATIVE = false
+# environment
+USERNAME = siddhesh
+# environment
+GNOME_SETUP_DISPLAY = :1
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# automatic
+?F = $(notdir $?)
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# environment
+LS_COLORS = 
+# automatic
++F = $(notdir $+)
+# environment
+DESKTOP_SESSION = ubuntu
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+LOGNAME = siddhesh
+# makefile (from 'makefile', line 14)
+CPPFLAGS = $(INC_FLAGS) --std=c++17 -MMD -MP -pthread -w -g 
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
+# environment
+SNAP_ARCH = amd64
+# makefile
+.DEFAULT_GOAL := all
+# environment
+SYSTEMD_EXEC_PID = 1763
+# environment
+DISPLAY = :0
+# environment
+USER = siddhesh
+# environment
+GTK_MODULES = gail:atk-bridge
+# default
+MAKE_VERSION := 4.3
+# 'override' directive
+.SHELLSTATUS := 0
+# environment
+DISABLE_WAYLAND = 1
+# environment
+SNAP_DATA = /var/snap/code/95
+# environment
+SNAP_CONTEXT = g2hoSZxPCNdNKS3ObFP-WbDntsyzdBTeupEWFLV5rb0E9qco1Y_M
+# environment
+MANAGERPID = 1578
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2839
+# environment
+_ = /snap/code/95/usr/share/code/code
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+ 
+# makefile (from 'makefile', line 1)
+TARGET_EXEC = race_game
+# environment
+GDK_PIXBUF_MODULE_FILE = /home/siddhesh/snap/code/common/.cache/gdk-pixbuf-loaders.cache
+# environment
+JOURNAL_STREAM = 8:46927
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# makefile (from 'makefile', line 3)
+BUILD_DIR = ./build
+# environment
+HOME = /home/siddhesh
+# environment
+QT_IM_MODULE = ibus
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-0887eb2c-1.67.0-main.sock
+# environment
+SNAP_NAME = code
+# environment
+GSETTINGS_SCHEMA_DIR = /snap/code/95/usr/share/glib-2.0/schemas
+# environment
+IM_CONFIG_PHASE = 1
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# makefile (from 'makefile', line 10)
+DEPS := ./src/main.cpp ./src/Collision.cpp ./src/game.cpp ./src/entity.cpp ./src/Vector2D.cpp ./src/TextureManager.cpp ./src/GameObject.cpp ./src/Map.cpp
+# environment
+SNAP_VERSION = 57fd6d01
+# default
+SUFFIXES := 
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+SNAP_COMMON = /var/snap/code/common
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# makefile (from 'makefile', line 7)
+CXX = g++
+# environment
+SNAP_USER_DATA = /home/siddhesh/snap/code/95
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+GDMSESSION = ubuntu
+# environment
+SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
+# variable set hash-table stats:
+# Load=136/1024=13%, Rehash=0, Collisions=9/188=5%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# / (device 2051, inode 2): No files, no impossibilities so far.
+# . (device 2051, inode 679972): 10 files, no impossibilities.
+
+# 10 files, no impossibilities in 2 directories.
+
+# Implicit Rules
+
+build/%.o: /%.cpp
+#  recipe to execute (from 'makefile', line 24):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
+
+# 1 implicit rules, 0 (0.0%) terminal.
+# Files
+
+ 
+# Not a target:
+src/TextureManager.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-04 08:13:02.512125156
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/Vector2D.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-04 08:13:02.512125156
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/Collision.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-04 15:05:25.286899292
+#  File has been updated.
+#  Successfully updated.
+
+race_game: src/main.cpp src/Collision.cpp src/game.cpp src/entity.cpp src/Vector2D.cpp src/TextureManager.cpp src/GameObject.cpp src/Map.cpp
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-06 20:22:50.610938536
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 21):
+	$(CXX) $(OBJS) -o $@ $(LDLIBS)
+
+# Not a target:
+src/GameObject.cpp:
+ 
+#  Implicit rule search has been done.
+#  Last modified 2022-05-04 08:13:02.508525156
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/main.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-06 13:04:05.773106829
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 30):
+	rm -rf $(BUILD_DIR)
+	rm $(TARGET_EXEC)
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: race_game
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/entity.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-04 18:51:57.829523015
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/game.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-06 20:22:20.346937093
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-06 20:23:28.028877919
+#  File has been updated.
+#  Successfully updated.
+
+.PHONY: clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/Map.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-06 20:21:25.938663757
+#  File has been updated.
+#  Successfully updated.
+
+# files hash-table stats:
+# Load=15/1024=1%, Rehash=0, Collisions=0/38=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 28 / storage = 281 B / avg = 10 B
+# current buf: size = 8162 B / used = 281 B / count = 28 / avg = 10 B
+
+# strcache performance: lookups = 40 / hit rate = 30%
+# hash-table stats:
+# Load=28/8192=0%, Rehash=0, Collisions=0/40=0%
+# Finished Make data base on Fri May  6 20:23:47 2022
+
+ 

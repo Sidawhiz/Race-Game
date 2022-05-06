@@ -145,7 +145,7 @@ void Game::AddCollectible(int id, int x, int y)
 {
     auto &collectibles(manager.addEntity());
     collectibles.addComponent<CollectibleComponent>(x, y, 32, 32, id);
-    if (id == 2)
+    if (id == 5 || id ==6)
     {
         collectibles.addComponent<ColliderComponent>("collectible");
     }

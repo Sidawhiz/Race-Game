@@ -39,8 +39,11 @@ public:
             path = "Assets/cream.jpeg"; 
             break;
         case 5:
-            path = "Assets/foodstall1.png";
+            path = "Assets/bg.png";
             break;
+        case 6:
+            path = "Assets/bg.png";
+            break;    
         default:
             break;
         }
