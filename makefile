@@ -12,7 +12,7 @@ DEPS := $(OBJS:.o=.d)
 INC_FLAGS := $(addprefix -I ,$(INCLUDE_DIRS))
 
 CPPFLAGS ?= $(INC_FLAGS) --std=c++17 -MMD -MP -pthread -w -g 
-LDLIBS ?= -lpthread -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -w
+LDLIBS ?= -lpthread -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -w 
 
 all: $(TARGET_EXEC)
 

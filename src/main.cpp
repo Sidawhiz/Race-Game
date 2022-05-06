@@ -10,7 +10,7 @@ int main()
     int frameTime;
 
     game = new Game();
-    game->init("Race Game",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 640, false);
+    game->init("Race Game",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1344, 704, false);
     while (game->running())
     {   
         //std::cout << game->count << std::endl;

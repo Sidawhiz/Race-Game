@@ -5,21 +5,30 @@
 #include "Components.h"
 #include "Vector2D.h"
 #include "Collision.h"
+#include "UI.h"
+#include <SDL2/SDL_mixer.h>
 
 SDL_Renderer *Game::ren = nullptr;
 SDL_Event Game::event;
 std::vector<ColliderComponent *> Game::colliders;
+std::map<std::string, TTF_Font *> Game::fonts;
+
 bool Game::isRunning = false;
 
-Map* MAP;
+int Game::playerID = 0 ;
+Vector2D Game::initialPos;
+bool Game::GameOver = false;
+bool Game::dead = false;
+bool Game::restart = false;
 
+Map* MAP;
 Manager manager;
 
 auto& Player(manager.addEntity());
-auto& wall(manager.addEntity());
-auto& tile0(manager.addEntity());
-auto& tile1(manager.addEntity());
-auto& tile2(manager.addEntity());
+auto& enemy(manager.addEntity());
+auto &label(manager.addEntity());
+auto &P1wonLabel(manager.addEntity());
+auto &P2wonLabel(manager.addEntity());
 
 enum groupLabels : std::size_t
 {
@@ -66,11 +75,26 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
     Map::LoadMap();
 
-    Player.addComponent<TransformComponent>(0,0,40,40,1);
+    if (TTF_Init() == -1)
+    {
+        std::cout << "SDL_ttf could not initialize! SDL_Error: " << SDL_GetError() << "\n";
+    }
+
+    Player.addComponent<TransformComponent>(40,40,40,40,1);
     Player.addComponent<SpriteComponent>("Assets/xx.png",true);
     Player.addComponent<Controller>();
     Player.addComponent<ColliderComponent>("player");
     Player.addGroup(groupPlayers);
+
+    enemy.addComponent<TransformComponent>(40,64,40,40,1);
+    enemy.addComponent<SpriteComponent>("Assets/xx2.png",true);
+    enemy.addComponent<ColliderComponent>("enemy");
+    enemy.addComponent<EnemyController>();
+    enemy.addGroup(groupEnemies);
+
+    SDL_Color white = {255, 255, 255, 255};
+    AddFont("Lobster", "Assets/Lobster.ttf", 22);
+    label.addComponent<UI>(246, 5, "Lives left: 3", "Lobster", white);
     // Player.getComponent<TransformComponent>().setVelocity(1,0);
 
     // wall.addComponent<TransformComponent>(100,100,32,5,8);
@@ -139,6 +163,7 @@ void Game::update()
     // if(Player.getComponent<TransformComponent>().position.x > 75.0f){
     //     Player.getComponent<SpriteComponent>().setTexture("Assets/bg.png");
     // }
+    label.getComponent<UI>().SetText("Lives Left", "Lobster");
     ColliderComponent a = Player.getComponent<ColliderComponent>();
     for(auto cc : colliders){
         if(cc->tag=="obstacle" && Collision::coll(a,*cc)){
@@ -149,8 +174,20 @@ void Game::update()
     }    
 }
 
+void Game::AddFont(std::string id, std::string path, int fontSize)
+{
+    fonts.emplace(id, TTF_OpenFont(path.c_str(), fontSize));
+}
+
+TTF_Font *Game::GetFont(std::string id)
+{
+    return fonts[id];
+}
+
+
 void Game::render()
 {
+
     SDL_RenderClear(ren);
     
     //map->DrawMap();
@@ -168,6 +205,8 @@ void Game::render()
     for(auto& c : collectibles){
         c->draw();
     }
+
+    label.draw();
 
     SDL_RenderPresent(ren);
 }

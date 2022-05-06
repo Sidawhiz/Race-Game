@@ -34,6 +34,14 @@ public:
     static void AddTile(int id, int x, int y);
     static void AddCollectible(int id, int x, int y);
     static bool isRunning;
+    static void AddFont(std::string id, std::string path, int fontSize);
+    static TTF_Font *GetFont(std::string id);
+    static std::map<std::string, TTF_Font *> fonts;
+    static int playerID;
+    static Vector2D initialPos;
+    static bool dead;
+    static bool GameOver;
+    static bool restart;
 
 private:
     SDL_Window *win;
