@@ -31,6 +31,7 @@ public:
     static SDL_Renderer *ren;
     static SDL_Event event;
     static std::vector<ColliderComponent *> colliders;
+    static std::vector<std::pair<std::pair<int, int>, bool>> collectibleStatus;
     static void AddTile(int id, int x, int y);
     static void AddCollectible(int id, int x, int y);
     static bool isRunning;

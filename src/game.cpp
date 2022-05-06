@@ -11,6 +11,7 @@
 SDL_Renderer *Game::ren = nullptr;
 SDL_Event Game::event;
 std::vector<ColliderComponent *> Game::colliders;
+std::vector<std::pair<std::pair<int, int>, bool>> Game::collectibleStatus;
 std::map<std::string, TTF_Font *> Game::fonts;
 
 bool Game::isRunning = false;
@@ -88,6 +89,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
     Map::LoadMap();
 
+    std::cout << collectibleStatus.size() << std::endl;
+
     if (TTF_Init() == -1)
     {
         std::cout << "SDL_ttf could not initialize! SDL_Error: " << SDL_GetError() << "\n";
@@ -134,7 +137,7 @@ void Game::AddTile(int id, int x, int y)
     auto &tile(manager.addEntity());
     tile.addComponent<TileComponent>(x, y, 32, 32, id); // size of input tile
     // 1 = wall, 2 = bg , 3 = foodstall
-    if (id >= 1 && id<=5 && id!=2)
+    if (id==1 || id==3 || id==4)
     {
         tile.addComponent<ColliderComponent>("obstacle");
     }
@@ -150,7 +153,7 @@ void Game::AddCollectible(int id, int x, int y)
         collectibles.addComponent<ColliderComponent>("collectible");
     }
     collectibles.addGroup(groupCollectibles);
-    // collectibleStatus.push_back(std::make_pair(std::make_pair(x, y), true));
+    collectibleStatus.push_back(std::make_pair(std::make_pair(x, y), true));
 }
 
 void Game ::handleEvents()
@@ -192,13 +195,43 @@ void Game::update()
                 //Player.getComponent<TransformComponent>().speed = 0;
                 // Game::crashVelocityPlayer = Player.getComponent<TransformComponent>().velocity;
             }
+            else if(cc->tag == "collectible"){
+                std::cout << "Encountered collectible" << std::endl;
+                int xp = cc->transform->position.x;
+                int yp = cc->transform->position.y;
+                for (int j = 0; j < collectibleStatus.size(); j++)
+                {
+                    if (collectibleStatus[j].first == make_pair(xp, yp))
+                    {
+                        collectibleStatus[j].second = false;
+                    }
+                }
+                colliders.erase(colliders.begin() + i);
+                render();
+                break;
+            }
+
         }
         if(Collision::coll(*cc, enemy.getComponent<ColliderComponent>())){
             if(cc->tag == "obstacle"){
                 enemy.getComponent<TransformComponent>().count = 30;
                 enemy.getComponent<TransformComponent>().crash = 1;
-                //Player.getComponent<TransformComponent>().speed = 0;
-                // Game::crashVelocityEnemy = enemy.getComponent<TransformComponent>().velocity;
+                std::cout << "Encountered obstacle" << std::endl;
+            }
+            else if(cc->tag == "collectible"){
+                std::cout << "Encountered collectible" << std::endl;
+                int xp = cc->transform->position.x;
+                int yp = cc->transform->position.y;
+                for (int j = 0; j < collectibleStatus.size(); j++)
+                {
+                    if (collectibleStatus[j].first == make_pair(xp, yp))
+                    {
+                        collectibleStatus[j].second = false;
+                    }
+                }
+                colliders.erase(colliders.begin() + i);
+                render();
+                break;
             }
         }
     }
@@ -233,7 +266,21 @@ void Game::render()
     }
 
     for(auto& c : collectibles){
-        c->draw();
+        bool drawable = true;
+        for (int j = 0; j < collectibleStatus.size(); j++)
+        {
+            if (c->getComponent<TransformComponent>().position.x == collectibleStatus[j].first.first and c->getComponent<TransformComponent>().position.y == collectibleStatus[j].first.second)
+            {
+                if (!collectibleStatus[j].second)
+                {
+                    drawable = false;
+                }
+            }
+        }
+        if (drawable)
+        {
+            c->draw();
+        }
     }
 
     label.draw();
