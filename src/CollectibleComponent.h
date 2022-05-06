@@ -27,7 +27,7 @@ public:
         switch (collectID)
         {
         case 2:
-            path = "Assets/collect1.png";
+            path = "Assets/collect2.png";
             break;
         default:
             break;

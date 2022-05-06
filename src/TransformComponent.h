@@ -14,6 +14,8 @@ public:
     int width = 40;
     int scale = 1;
     int speed = 2;
+    int count = 0;
+    int crash = 0;
 
     TransformComponent(){
         position.Zero();
@@ -66,6 +68,22 @@ public:
     void update() override{
         position.x += velocity.x * speed;
         position.y += velocity.y * speed;
+        if(crash){
+            if(count>15 && count<=30){
+                count--;
+                speed=-2;
+                // velocity = Game::crashVelocityPlayer;
+                //std::cout << count << std::endl;
+            }
+            if(count <=15){
+                count--;
+                speed = 0;
+            }
+            if(count == 1 && speed == 0){
+                speed=2;
+                crash = 0;
+            }
+        }
     }
 
 };

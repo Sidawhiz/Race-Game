@@ -42,6 +42,9 @@ public:
     static bool dead;
     static bool GameOver;
     static bool restart;
+    static Vector2D crashVelocityPlayer;
+    static Vector2D crashVelocityEnemy;
+    
 
 private:
     SDL_Window *win;
