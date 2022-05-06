@@ -31,7 +31,8 @@ public:
     static SDL_Renderer *ren;
     static SDL_Event event;
     static std::vector<ColliderComponent *> colliders;
-    static std::vector<std::pair<std::pair<int, int>, bool>> collectibleStatus;
+    static std::vector<std::pair<std::pair<int, int>, bool>> collectibleStatus1;
+    static std::vector<std::pair<std::pair<int, int>, bool>> collectibleStatus2;
     static void AddTile(int id, int x, int y);
     static void AddCollectible(int id, int x, int y);
     static bool isRunning;
@@ -39,10 +40,9 @@ public:
     static TTF_Font *GetFont(std::string id);
     static std::map<std::string, TTF_Font *> fonts;
     static int playerID;
-    static Vector2D initialPos;
-    static bool dead;
+    static int num_of_collectibles1;
+      static int num_of_collectibles2;
     static bool GameOver;
-    static bool restart;
     static Vector2D crashVelocityPlayer;
     static Vector2D crashVelocityEnemy;
     

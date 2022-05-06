@@ -32,7 +32,7 @@ public:
         collider.y = static_cast<int> (transform->position.y) ;
         collider.w = transform->scale * transform->width;
         collider.h = transform->scale * transform->height;
-        if (tag == "collectible"){
+        if (tag == "collectible1" || tag=="collectible2"){
             collider.x = static_cast<int> (transform->position.x) +10;
             collider.y = static_cast<int> (transform->position.y) +10;
             collider.w = 10;

@@ -43,7 +43,10 @@ public:
             break;
         case 6:
             path = "Assets/bg.png";
-            break;    
+            break; 
+        case 7:
+            path = "Assets/race_End.png";
+            break;       
         default:
             break;
         }

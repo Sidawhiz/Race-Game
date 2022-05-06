@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri May  6 21:17:03 2022
+# Make data base, printed on Fri May  6 22:52:41 2022
 
 # Variables
 
@@ -23,7 +23,7 @@ SNAP_INSTANCE_KEY =
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-1bbf15f3-e3ab-4655-ac4a-37717c48a020.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-51d4d116-3b78-42e1-965b-889271216b78.sock
 # environment
 VSCODE_CWD = /home/siddhesh
 # default
@@ -61,7 +61,7 @@ VSCODE_CODE_CACHE_PATH = /home/siddhesh/.config/Code/CachedData/57fd6d0195bb9b9d
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.LGTTL1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.VTE1L1
 # default
 .LOADED := 
 # default
@@ -105,7 +105,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 2805
+VSCODE_PID = 2891
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -113,7 +113,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/siddhesh-virtual-machine:@/tmp/.ICE-unix/1759,unix/siddhesh-virtual-machine:/tmp/.ICE-unix/1759
+SESSION_MANAGER = local/siddhesh-virtual-machine:@/tmp/.ICE-unix/1792,unix/siddhesh-virtual-machine:/tmp/.ICE-unix/1792
 # automatic
 *F = $(notdir $*)
 # environment
@@ -165,7 +165,7 @@ LDLIBS = -lpthread -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -w
 # environment
 SNAP = /snap/code/95
 # environment
-INVOCATION_ID = 80999953a593481ca1a087c67764f584
+INVOCATION_ID = 8078940b388742a99137ee4f867856eb
 # environment
 SNAP_REVISION = 95
 # environment
@@ -203,7 +203,7 @@ SNAP_ARCH = amd64
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 1815
+SYSTEMD_EXEC_PID = 1826
 # environment
 DISPLAY = :0
 # environment
@@ -221,9 +221,9 @@ SNAP_DATA = /var/snap/code/95
 # environment
 SNAP_CONTEXT = g2hoSZxPCNdNKS3ObFP-WbDntsyzdBTeupEWFLV5rb0E9qco1Y_M
 # environment
-MANAGERPID = 1604
+MANAGERPID = 1636
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2767
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2754
 # environment
 _ = /snap/code/95/usr/share/code/code
 # environment
@@ -233,7 +233,7 @@ TARGET_EXEC = race_game
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/siddhesh/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-JOURNAL_STREAM = 8:45922
+JOURNAL_STREAM = 8:46012
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -330,7 +330,7 @@ src/Collision.cpp:
 
 race_game: src/main.cpp src/Collision.cpp src/game.cpp src/entity.cpp src/Vector2D.cpp src/TextureManager.cpp src/GameObject.cpp src/Map.cpp
 #  Implicit rule search has not been done.
-#  Last modified 2022-05-06 21:10:32.791434515
+#  Last modified 2022-05-06 22:48:33.386943948
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 21):
@@ -382,7 +382,7 @@ src/entity.cpp:
 # Not a target:
 src/game.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-06 21:10:18.995433857
+#  Last modified 2022-05-06 22:48:15.064344447
 #  File has been updated.
 #  Successfully updated.
 
@@ -401,7 +401,7 @@ makefile:
 # Not a target:
 src/Map.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-06 20:21:25.938663757
+#  Last modified 2022-05-06 22:09:04.582530728
 #  File has been updated.
 #  Successfully updated.
 
@@ -419,6 +419,6 @@ src/Map.cpp:
 # strcache performance: lookups = 40 / hit rate = 30%
 # hash-table stats:
 # Load=28/8192=0%, Rehash=0, Collisions=0/40=0%
-# Finished Make data base on Fri May  6 21:17:03 2022
+# Finished Make data base on Fri May  6 22:52:41 2022
 
  
