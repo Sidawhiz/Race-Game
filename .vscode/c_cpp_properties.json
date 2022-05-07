@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/include/SDL2"
+                "/usr/include/SDL2",
+                "~/Desktop/asio-1.22.1/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

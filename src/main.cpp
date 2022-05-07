@@ -1,4 +1,5 @@
 #include "game.h"
+#include <fstream>
 
 Game *game = nullptr;
 int main()

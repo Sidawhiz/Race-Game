@@ -7,9 +7,12 @@
 #include "Collision.h"
 #include "UI.h"
 #include <SDL2/SDL_mixer.h>
+#include <sstream>
 
 SDL_Renderer *Game::ren = nullptr;
 SDL_Event Game::event;
+
+
 std::vector<ColliderComponent *> Game::colliders;
 std::vector<std::pair<std::pair<int, int>, bool>> Game::collectibleStatus1;
 std::vector<std::pair<std::pair<int, int>, bool>> Game::collectibleStatus2;
@@ -20,9 +23,16 @@ bool Game::isRunning = false;
 int Game::playerID = 0 ;
 int Game::num_of_collectibles1 = 0;
 int Game::num_of_collectibles2 = 0;
+
 bool Game::GameOver = false;
-Vector2D Game::crashVelocityPlayer;
-Vector2D Game::crashVelocityEnemy;
+bool Game::dead = false;
+bool Game::restart = false;
+
+UserInput Game::userInput = UserInput::DUMMY;
+UserInput Game::otherUserInput = UserInput::DUMMY;
+bool Game::toUpdate = true;
+
+
 
 Map* MAP;
 Manager manager;
@@ -87,6 +97,40 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
     isRunning = true;
 
+    if (!Connect("127.0.0.2", 60000))
+    {
+        std::cout << "Couldn't connect to server\n";
+    }
+
+    if (IsConnected())
+    {
+        while (Incoming().empty())
+        {
+            continue;
+        }
+
+        auto msg = Incoming().pop_front().msg;
+
+        if (msg.header.id == GameMsg::Client_AssignID)
+        {
+            initMessage content;
+            msg >> content;
+            Game::playerID = content.playerID;
+            srand(content.randomSeed);
+
+            std::cout << "Player ID: " << Game::playerID << "\n";
+            std::cout << "Random Seed: " << content.randomSeed << "\n";
+        }
+        else
+        {
+            std::cout << "First Message Not as expected!\n";
+        }
+    }
+    else
+    {
+        std::cout << "Not Yet Connected!\n";
+    }
+
     MAP = new Map();
 
     Map::LoadMap();
@@ -102,14 +146,14 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
     Player.addComponent<TransformComponent>(40,40,40,40,1);
     Player.addComponent<SpriteComponent>("Assets/xx.png",true);
-    Player.addComponent<Controller>();
+    Player.addComponent<Controller>(this);
     Player.addComponent<ColliderComponent>("player");
     Player.addGroup(groupPlayers);
 
     enemy.addComponent<TransformComponent>(64,40,40,40,1);
     enemy.addComponent<SpriteComponent>("Assets/xx2.png",true);
     enemy.addComponent<ColliderComponent>("enemy");
-    enemy.addComponent<EnemyController>();
+    enemy.addComponent<EnemyController>(this);
     enemy.addGroup(groupEnemies);
 
     SDL_Color white = {255, 255, 255, 255};
@@ -189,86 +233,113 @@ void Game ::handleEvents()
 }
 
 void Game::update()
-{
-    if(!GameOver){
-        manager.refresh();
-        manager.update();
-        Vector2D playerpos = Player.getComponent<TransformComponent>().position;
-        label.getComponent<UI>().SetText("Lives Left", "Lobster");
-        Himadrilabel.getComponent<UI>().SetText("Himadri", "Lobster");
-        LHClabel.getComponent<UI>().SetText("LHC", "Lobster");
-        footballlabel.getComponent<UI>().SetText("Football", "Lobster");
-        SAClabel.getComponent<UI>().SetText("SAC", "Lobster");
-        Nalandalabel.getComponent<UI>().SetText("Nalanda", "Lobster");
-        Nilgirilabel.getComponent<UI>().SetText("Nilgiri", "Lobster");
-        blocklabel.getComponent<UI>().SetText("Blocks", "Lobster");
-        Amullabel.getComponent<UI>().SetText("Amul", "Lobster");
-        Redlabel.getComponent<UI>().SetText("Red Square", "Lobster");
+{  
+    if(IsConnected())
+    {
+        while(!Incoming().empty()){
+            auto msg = Incoming().pop_front().msg;
 
-        for(int i = 0; i<colliders.size(); i++){
-            auto &cc = colliders[i];
-            if(Collision::coll(*cc, Player.getComponent<ColliderComponent>())){
-                if(cc->tag == "obstacle"){
-                    Player.getComponent<TransformComponent>().count = 30;
-                    Player.getComponent<TransformComponent>().crash = 1;
-                    //Player.getComponent<TransformComponent>().speed = 0;
-                    // Game::crashVelocityPlayer = Player.getComponent<TransformComponent>().velocity;
-                }
-                else if(cc->tag == "collectible1"){
-                    std::cout << "Encountered collectible1" << std::endl;
-                    int xp = cc->transform->position.x;
-                    int yp = cc->transform->position.y;
-                    for (int j = 0; j < collectibleStatus1.size(); j++)
+            switch (msg.header.id)
+            {
+
+                case GameMsg::Game_UserInput:
+                {
+                    msg >> Game::otherUserInput;
+                    if (Game::otherUserInput != UserInput::DUMMY)
                     {
-                        if (collectibleStatus1[j].first == make_pair(xp, yp))
+                        std::cout << "Received Other User Input: " << int(Game::otherUserInput) << "\n";
+
+                        if (playerID == 1)
                         {
-                            collectibleStatus1[j].second = false;
+                            enemy.getComponent<EnemyController>().update();
+                        }
+                        else
+                        {
+                            Player.getComponent<Controller>().update();
                         }
                     }
-                    colliders.erase(colliders.begin() + i);
-                    num_of_collectibles1--;
-                    render();
                     break;
                 }
-                else if(cc->tag == "End"){
-                    if(num_of_collectibles1 == 0){
-                        GameOver = true;
-                    }
-                }
-
             }
-            if(Collision::coll(*cc, enemy.getComponent<ColliderComponent>())){
-                if(cc->tag == "obstacle"){
-                    enemy.getComponent<TransformComponent>().count = 30;
-                    enemy.getComponent<TransformComponent>().crash = 1;
-                    std::cout << "Encountered obstacle" << std::endl;
-                }
-                else if(cc->tag == "collectible2"){
-                    std::cout << "Encountered collectible2" << std::endl;
-                    int xp = cc->transform->position.x;
-                    int yp = cc->transform->position.y;
-                    for (int j = 0; j < collectibleStatus2.size(); j++)
-                    {
-                        if (collectibleStatus2[j].first == make_pair(xp, yp))
+        }
+        if(!GameOver){
+            manager.refresh();
+            manager.update();
+
+            Vector2D playerpos = Player.getComponent<TransformComponent>().position;
+            label.getComponent<UI>().SetText("Lives Left", "Lobster");
+            Himadrilabel.getComponent<UI>().SetText("Himadri", "Lobster");
+            LHClabel.getComponent<UI>().SetText("LHC", "Lobster");
+            footballlabel.getComponent<UI>().SetText("Football", "Lobster");
+            SAClabel.getComponent<UI>().SetText("SAC", "Lobster");
+            Nalandalabel.getComponent<UI>().SetText("Nalanda", "Lobster");
+            Nilgirilabel.getComponent<UI>().SetText("Nilgiri", "Lobster");
+            blocklabel.getComponent<UI>().SetText("Blocks", "Lobster");
+            Amullabel.getComponent<UI>().SetText("Amul", "Lobster");
+            Redlabel.getComponent<UI>().SetText("Red Square", "Lobster");
+
+            for(int i = 0; i<colliders.size(); i++){
+                auto &cc = colliders[i];
+                if(Collision::coll(*cc, Player.getComponent<ColliderComponent>())){
+                    if(cc->tag == "obstacle"){
+                        Player.getComponent<TransformComponent>().count = 30;
+                        Player.getComponent<TransformComponent>().crash = 1;
+                    }    
+                    else if(cc->tag == "collectible1"){
+                        std::cout << "Encountered collectible1" << std::endl;
+                        int xp = cc->transform->position.x;
+                        int yp = cc->transform->position.y;
+                        for (int j = 0; j < collectibleStatus1.size(); j++)
                         {
-                            collectibleStatus2[j].second = false;
+                            if (collectibleStatus1[j].first == make_pair(xp, yp))
+                            {
+                                collectibleStatus1[j].second = false;
+                            }
+                        }
+                        colliders.erase(colliders.begin() + i);
+                        num_of_collectibles1--;
+                        render();
+                        break;
+                    }
+                    else if(cc->tag == "End"){
+                        if(num_of_collectibles1 == 0){
+                            GameOver = true;
                         }
                     }
-                    colliders.erase(colliders.begin() + i);
-                    num_of_collectibles2--;
-                    render();
-                    break;
+
                 }
-                else if(cc->tag=="End"){
-                    //std::cout << "End line " << num_of_collectibles2 << std::endl;
-                    if(num_of_collectibles2 == 0){
-                        GameOver = true;
+                if(Collision::coll(*cc, enemy.getComponent<ColliderComponent>())){
+                    if(cc->tag == "obstacle"){
+                        enemy.getComponent<TransformComponent>().count = 30;
+                        enemy.getComponent<TransformComponent>().crash = 1;
+                        std::cout << "Encountered obstacle" << std::endl;
+                    }
+                    else if(cc->tag == "collectible2"){
+                        std::cout << "Encountered collectible2" << std::endl;
+                        int xp = cc->transform->position.x;
+                        int yp = cc->transform->position.y;
+                        for (int j = 0; j < collectibleStatus2.size(); j++)
+                        {
+                            if (collectibleStatus2[j].first == make_pair(xp, yp))
+                            {
+                                collectibleStatus2[j].second = false;
+                            }
+                        }
+                        colliders.erase(colliders.begin() + i);
+                        num_of_collectibles2--;
+                        render();
+                        break;
+                    }
+                    else if(cc->tag=="End"){
+                        //std::cout << "End line " << num_of_collectibles2 << std::endl;
+                        if(num_of_collectibles2 == 0){
+                            GameOver = true;
+                        }
                     }
                 }
             }
         }
     }
-
 }
 
 void Game::AddFont(std::string id, std::string path, int fontSize)

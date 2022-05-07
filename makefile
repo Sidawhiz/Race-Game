@@ -1,33 +1,48 @@
-TARGET_EXEC ?= race_game
+TARGET_EXEC_CLIENT ?= game
+TARGET_EXEC_SERVER ?= server
 
-BUILD_DIR ?= ./build
-SRC_DRS ?= ./src
-INCLUDE_DIRS ?= ./src /usr/include/SDL2
+BUILD_DIR_CLIENT ?= ./build-game
+BUILD_DIR_SERVER ?= ./build-server
+SRC_DIRS ?= ./src
+INCLUDE_DIRS ?= ./include ~/Desktop/asio-1.22.1/include
 
 CXX ?= g++
-SRCS := $(shell find $(SRC_DIRS) -name "*.cpp")
-OBJS := $(SRCS:$(SRC_DIRS)/%.cpp=$(BUILD_DIR)/%.o)
-DEPS := $(OBJS:.o=.d)
+SRCS_CLIENT := $(shell find $(SRC_DIRS) -name "*.cpp" ! -name "server.cpp" )
+OBJS_CLIENT := $(SRCS_CLIENT:$(SRC_DIRS)/%.cpp=$(BUILD_DIR_CLIENT)/%.o)
+DEPS_CLIENT := $(OBJS_CLIENT:.o=.d)
+
+SRCS_SERVER ?= ./src/server.cpp ./src/Networking.cpp 
+OBJS_SERVER := $(SRCS_SERVER:$(SRC_DIRS)/%.cpp=$(BUILD_DIR_SERVER)/%.o)
+DEPS_SERVER := $(OBJS_SERVER:.o=.d)
 
 INC_FLAGS := $(addprefix -I ,$(INCLUDE_DIRS))
 
 CPPFLAGS ?= $(INC_FLAGS) --std=c++17 -MMD -MP -pthread -w -g 
-LDLIBS ?= -lpthread -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -w 
+LDLIBS_CLIENT ?= -lpthread -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
+LDLIBS_SERVER ?= -lpthread
 
-all: $(TARGET_EXEC)
+all: $(TARGET_EXEC_CLIENT) $(TARGET_EXEC_SERVER)
 
 
-$(TARGET_EXEC): $(OBJS)
-	$(CXX) $(OBJS) -o $@ $(LDLIBS)
+$(TARGET_EXEC_CLIENT): $(OBJS_CLIENT)
+	$(CXX) $(OBJS_CLIENT) -o $@ $(LDLIBS_CLIENT)
 
-$(BUILD_DIR)/%.o: $(SRC_DIRS)/%.cpp
+$(BUILD_DIR_CLIENT)/%.o: $(SRC_DIRS)/%.cpp
 	$(MKDIR_P) $(dir $@)
 	$(CXX) $(CPPFLAGS) -c $< -o $@
+
+$(TARGET_EXEC_SERVER): $(OBJS_SERVER)
+	$(CXX) $(OBJS_SERVER) -o $@ $(LDLIBS_SERVER)
+
+$(BUILD_DIR_SERVER)/%.o: $(SRC_DIRS)/%.cpp
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
+
 
 .PHONY: clean
 
 clean:
-	rm -rf $(BUILD_DIR)
-	rm $(TARGET_EXEC)
+	rm -rf $(BUILD_DIR_CLIENT) $(BUILD_DIR_SERVER)
+	rm $(TARGET_EXEC_CLIENT) $(TARGET_EXEC_SERVER)
 
 MKDIR_P ?= mkdir -p

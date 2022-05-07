@@ -7,14 +7,16 @@ using namespace std;
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <vector>
-#include "SDL2/SDL_ttf.h"
+#include <SDL2/SDL_ttf.h>
 #include "Vector2D.h"
 #include <map>
+#include "Networking.h"
+#include "Message.h"
 
 
 class ColliderComponent;
 
-class Game 
+class Game : public client_interface<GameMsg>
 {
 public:
     Game();
@@ -41,10 +43,12 @@ public:
     static std::map<std::string, TTF_Font *> fonts;
     static int playerID;
     static int num_of_collectibles1;
-      static int num_of_collectibles2;
+    static int num_of_collectibles2;
     static bool GameOver;
-    static Vector2D crashVelocityPlayer;
-    static Vector2D crashVelocityEnemy;
+    static UserInput otherUserInput, userInput;
+    static bool toUpdate;
+    static bool dead;
+    static bool restart;
     
 
 private:

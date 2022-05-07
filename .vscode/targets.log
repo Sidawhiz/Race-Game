@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri May  6 22:52:41 2022
+# Make data base, printed on Sat May  7 18:47:52 2022
 
 # Variables
 
@@ -24,6 +24,7 @@ SNAP_INSTANCE_KEY =
 GJS_DEBUG_OUTPUT = stderr
 # environment
 VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-51d4d116-3b78-42e1-965b-889271216b78.sock
+ 
 # environment
 VSCODE_CWD = /home/siddhesh
 # default
@@ -38,8 +39,8 @@ SNAP_INSTANCE_NAME = code
 GDK_PIXBUF_MODULEDIR = /snap/code/95/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
-# makefile (from 'makefile', line 12)
-INC_FLAGS := -I ./src -I /usr/include/SDL2
+# makefile (from 'makefile', line 18)
+INC_FLAGS := -I ./include -I ~/Desktop/asio-1.22.1/include
 # default
 .VARIABLES := 
 # environment
@@ -48,10 +49,14 @@ PWD = /home/siddhesh/Ass2/Race-Game
 %D = $(patsubst %/,%,$(dir $%))
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# makefile (from 'makefile', line 15)
+OBJS_SERVER := ./build-server/server.o ./build-server/Networking.o
+# makefile (from 'makefile', line 10)
+SRCS_CLIENT := ./src/main.cpp ./src/Collision.cpp ./src/game.cpp ./src/entity.cpp ./src/Vector2D.cpp ./src/Networking.cpp ./src/TextureManager.cpp ./src/GameObject.cpp ./src/Map.cpp
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
-# makefile (from 'makefile', line 5)
-INCLUDE_DIRS = ./src /usr/include/SDL2
+# makefile (from 'makefile', line 7)
+INCLUDE_DIRS = ./include ~/Desktop/asio-1.22.1/include
 # environment
 VSCODE_LOG_STACK = false
 # automatic
@@ -72,12 +77,14 @@ MAKEFLAGS = pqrR
 CURDIR := /home/siddhesh/Ass2/Race-Game
 # environment
 VSCODE_PIPE_LOGGING = true
+# makefile (from 'makefile', line 5)
+BUILD_DIR_SERVER = ./build-server
+# makefile (from 'makefile', line 21)
+LDLIBS_CLIENT = -lpthread -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
-# makefile (from 'makefile', line 8)
-SRCS := ./src/main.cpp ./src/Collision.cpp ./src/game.cpp ./src/entity.cpp ./src/Vector2D.cpp ./src/TextureManager.cpp ./src/GameObject.cpp ./src/Map.cpp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -94,8 +101,6 @@ XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 +D = $(patsubst %/,%,$(dir $+))
 # environment
 XDG_SESSION_DESKTOP = ubuntu
-# makefile (from 'makefile', line 4)
-SRC_DRS = ./src
 # makefile (from 'makefile', line 1)
 MAKEFILE_LIST := makefile
 # environment
@@ -109,7 +114,10 @@ VSCODE_PID = 2891
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
+ 
 ?D = $(patsubst %/,%,$(dir $?))
+# makefile (from 'makefile', line 4)
+BUILD_DIR_CLIENT = ./build-game
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
@@ -122,15 +130,16 @@ CHROME_DESKTOP = code-url-handler.desktop
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
+# makefile (from 'makefile', line 2)
+TARGET_EXEC_SERVER = server
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
-# makefile (from 'makefile', line 33)
+# makefile (from 'makefile', line 48)
 MKDIR_P = mkdir -p
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
-# makefile (from 'makefile', line 9)
-OBJS := ./src/main.cpp ./src/Collision.cpp ./src/game.cpp ./src/entity.cpp ./src/Vector2D.cpp ./src/TextureManager.cpp ./src/GameObject.cpp ./src/Map.cpp
 # environment
+ 
 GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 # makefile
 SHELL = /bin/sh
@@ -142,7 +151,10 @@ XMODIFIERS = @im=ibus
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
 SHLVL = 0
+# makefile (from 'makefile', line 6)
+SRC_DIRS = ./src
 # environment
+ 
 MAKELEVEL := 0
 # environment
 IM_CONFIG_CHECK_ENV = 1
@@ -156,16 +168,18 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 MAKEFILES := 
 # environment
 LANGUAGE = en_IN:en
+ 
 # automatic
 ^F = $(notdir $^)
 # environment
 SNAP_USER_COMMON = /home/siddhesh/snap/code/common
-# makefile (from 'makefile', line 15)
-LDLIBS = -lpthread -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -w 
 # environment
 SNAP = /snap/code/95
 # environment
 INVOCATION_ID = 8078940b388742a99137ee4f867856eb
+# makefile (from 'makefile', line 14)
+SRCS_SERVER = ./src/server.cpp ./src/Networking.cpp 
+ 
 # environment
 SNAP_REVISION = 95
 # environment
@@ -174,8 +188,11 @@ SNAP_REAL_HOME = /home/siddhesh
 VSCODE_LOG_NATIVE = false
 # environment
 USERNAME = siddhesh
+# makefile (from 'makefile', line 11)
+OBJS_CLIENT := ./build-game/main.o ./build-game/Collision.o ./build-game/game.o ./build-game/entity.o ./build-game/Vector2D.o ./build-game/Networking.o ./build-game/TextureManager.o ./build-game/GameObject.o ./build-game/Map.o
 # environment
 GNOME_SETUP_DISPLAY = :1
+ 
 # environment
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # automatic
@@ -194,10 +211,13 @@ ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 GNUMAKEFLAGS := 
 # environment
 LOGNAME = siddhesh
-# makefile (from 'makefile', line 14)
+ 
+# makefile (from 'makefile', line 20)
 CPPFLAGS = $(INC_FLAGS) --std=c++17 -MMD -MP -pthread -w -g 
 # environment
 GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
+# makefile (from 'makefile', line 16)
+DEPS_SERVER := ./build-server/server.d ./build-server/Networking.d
 # environment
 SNAP_ARCH = amd64
 # makefile
@@ -208,6 +228,7 @@ SYSTEMD_EXEC_PID = 1826
 DISPLAY = :0
 # environment
 USER = siddhesh
+ 
 # environment
 GTK_MODULES = gail:atk-bridge
 # default
@@ -224,12 +245,11 @@ SNAP_CONTEXT = g2hoSZxPCNdNKS3ObFP-WbDntsyzdBTeupEWFLV5rb0E9qco1Y_M
 MANAGERPID = 1636
 # environment
 GIO_LAUNCHED_DESKTOP_FILE_PID = 2754
+ 
 # environment
 _ = /snap/code/95/usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
-# makefile (from 'makefile', line 1)
-TARGET_EXEC = race_game
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/siddhesh/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
@@ -238,12 +258,17 @@ JOURNAL_STREAM = 8:46012
 XDG_SESSION_CLASS = user
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
-# makefile (from 'makefile', line 3)
-BUILD_DIR = ./build
 # environment
 HOME = /home/siddhesh
 # environment
+ 
 QT_IM_MODULE = ibus
+# makefile (from 'makefile', line 1)
+TARGET_EXEC_CLIENT = game
+# makefile (from 'makefile', line 12)
+DEPS_CLIENT := ./build-game/main.d ./build-game/Collision.d ./build-game/game.d ./build-game/entity.d ./build-game/Vector2D.d ./build-game/Networking.d ./build-game/TextureManager.d ./build-game/GameObject.d ./build-game/Map.d
+# makefile (from 'makefile', line 22)
+LDLIBS_SERVER = -lpthread
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
@@ -255,11 +280,10 @@ GSETTINGS_SCHEMA_DIR = /snap/code/95/usr/share/glib-2.0/schemas
 # environment
 IM_CONFIG_PHASE = 1
 # default
+ 
 .RECIPEPREFIX := 
 # automatic
 <F = $(notdir $<)
-# makefile (from 'makefile', line 10)
-DEPS := ./src/main.cpp ./src/Collision.cpp ./src/game.cpp ./src/entity.cpp ./src/Vector2D.cpp ./src/TextureManager.cpp ./src/GameObject.cpp ./src/Map.cpp
 # environment
 SNAP_VERSION = 57fd6d01
 # default
@@ -272,40 +296,58 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 SNAP_COMMON = /var/snap/code/common
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
-# makefile (from 'makefile', line 7)
+ 
+# makefile (from 'makefile', line 9)
 CXX = g++
 # environment
 SNAP_USER_DATA = /home/siddhesh/snap/code/95
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
- 
 GDMSESSION = ubuntu
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=136/1024=13%, Rehash=0, Collisions=9/188=5%
+# Load=142/1024=14%, Rehash=0, Collisions=5/207=2%
 
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
+ 
 
 # Directories
 
-# / (device 2051, inode 2): No files, no impossibilities so far.
-# . (device 2051, inode 679972): 10 files, no impossibilities.
+# src (device 2051, inode 679989): 30 files, no impossibilities so far.
+# . (device 2051, inode 679972): 14 files, no impossibilities.
 
-# 10 files, no impossibilities in 2 directories.
+# 44 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
-build/%.o: /%.cpp
-#  recipe to execute (from 'makefile', line 24):
+build-game/%.o: src/%.cpp
+#  recipe to execute (from 'makefile', line 31):
 	$(MKDIR_P) $(dir $@)
 	$(CXX) $(CPPFLAGS) -c $< -o $@
 
-# 1 implicit rules, 0 (0.0%) terminal.
+ 
+build-server/%.o: src/%.cpp
+#  recipe to execute (from 'makefile', line 38):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
+
+# 2 implicit rules, 0 (0.0%) terminal.
 # Files
+
+build-game/Networking.o: src/Networking.cpp
+#  Implicit rule search has been done.
+ 
+#  Implicit/static pattern stem: 'Networking'
+#  Last modified 2022-05-07 18:07:22.968091159
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 31):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
 
 # Not a target:
 src/TextureManager.cpp:
@@ -314,6 +356,15 @@ src/TextureManager.cpp:
 #  File has been updated.
 #  Successfully updated.
 
+game: build-game/main.o build-game/Collision.o build-game/game.o build-game/entity.o build-game/Vector2D.o build-game/Networking.o build-game/TextureManager.o build-game/GameObject.o build-game/Map.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-07 18:07:37.676485443
+#  File has been updated.
+#  Successfully updated.
+ 
+#  recipe to execute (from 'makefile', line 28):
+	$(CXX) $(OBJS_CLIENT) -o $@ $(LDLIBS_CLIENT)
+
 # Not a target:
 src/Vector2D.cpp:
 #  Implicit rule search has been done.
@@ -321,20 +372,33 @@ src/Vector2D.cpp:
 #  File has been updated.
 #  Successfully updated.
 
+build-game/entity.o: src/entity.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'entity'
+#  Last modified 2022-05-07 18:07:18.603973699
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 31):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
+
+build-server/Networking.o: src/Networking.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Networking'
+#  Last modified 2022-05-07 18:07:48.028761692
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 38):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
+
 # Not a target:
 src/Collision.cpp:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2022-05-04 15:05:25.286899292
 #  File has been updated.
 #  Successfully updated.
-
-race_game: src/main.cpp src/Collision.cpp src/game.cpp src/entity.cpp src/Vector2D.cpp src/TextureManager.cpp src/GameObject.cpp src/Map.cpp
-#  Implicit rule search has not been done.
-#  Last modified 2022-05-06 22:48:33.386943948
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'makefile', line 21):
-	$(CXX) $(OBJS) -o $@ $(LDLIBS)
 
 # Not a target:
 src/GameObject.cpp:
@@ -346,7 +410,7 @@ src/GameObject.cpp:
 # Not a target:
 src/main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-06 13:04:05.773106829
+#  Last modified 2022-05-07 13:34:21.074134456
 #  File has been updated.
 #  Successfully updated.
 
@@ -355,22 +419,100 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'makefile', line 30):
-	rm -rf $(BUILD_DIR)
-	rm $(TARGET_EXEC)
+#  recipe to execute (from 'makefile', line 45):
+	rm -rf $(BUILD_DIR_CLIENT) $(BUILD_DIR_SERVER)
+	rm $(TARGET_EXEC_CLIENT) $(TARGET_EXEC_SERVER)
+
+build-game/Vector2D.o: src/Vector2D.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Vector2D'
+#  Last modified 2022-05-07 18:07:19.283992017
+ 
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 31):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
+
+server: build-server/server.o build-server/Networking.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-07 18:07:48.540775331
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 35):
+	$(CXX) $(OBJS_SERVER) -o $@ $(LDLIBS_SERVER)
+
+# Not a target:
+src/server.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-07 12:32:33.600985026
+#  File has been updated.
+#  Successfully updated.
+
+build-game/game.o: src/game.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'game'
+#  Last modified 2022-05-07 18:07:13.759843034
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 31):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
+
+build-game/TextureManager.o: src/TextureManager.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'TextureManager'
+#  Last modified 2022-05-07 18:07:27.520213434
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 31):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
 
 # Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
-all: race_game
+build-game/GameObject.o: src/GameObject.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'GameObject'
+ 
+#  Last modified 2022-05-07 18:07:32.14433741
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 31):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
+
+all: game server
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Successfully updated.
+
+build-game/main.o: src/main.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'main'
+#  Last modified 2022-05-07 18:06:59.019443323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 31):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
+
+build-game/Map.o: src/Map.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Map'
+#  Last modified 2022-05-07 18:07:36.852463412
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 31):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
 
 # Not a target:
 src/entity.cpp:
@@ -382,16 +524,44 @@ src/entity.cpp:
 # Not a target:
 src/game.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-06 22:48:15.064344447
+#  Last modified 2022-05-07 18:00:26.520869862
 #  File has been updated.
 #  Successfully updated.
+
+build-server/server.o: src/server.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'server'
+#  Last modified 2022-05-07 18:07:44.48866733
+#  File has been updated.
+ 
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 38):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
 
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-06 20:23:28.028877919
+#  Last modified 2022-05-07 18:06:50.179204775
 #  File has been updated.
 #  Successfully updated.
+
+# Not a target:
+src/Networking.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-07 12:20:46.224261273
+#  File has been updated.
+#  Successfully updated.
+
+build-game/Collision.o: src/Collision.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'Collision'
+#  Last modified 2022-05-07 18:07:04.239585265
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 31):
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
 
 .PHONY: clean
 #  Implicit rule search has not been done.
@@ -401,24 +571,25 @@ makefile:
 # Not a target:
 src/Map.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-06 22:09:04.582530728
+#  Last modified 2022-05-06 22:53:41.964004144
 #  File has been updated.
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=15/1024=1%, Rehash=0, Collisions=0/38=0%
+# Load=29/1024=3%, Rehash=0, Collisions=0/90=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 28 / storage = 281 B / avg = 10 B
-# current buf: size = 8162 B / used = 281 B / count = 28 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 81 / storage = 1051 B / avg = 12 B
+# current buf: size = 8162 B / used = 1051 B / count = 81 / avg = 12 B
 
-# strcache performance: lookups = 40 / hit rate = 30%
+ 
+# strcache performance: lookups = 115 / hit rate = 29%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=0/40=0%
-# Finished Make data base on Fri May  6 22:52:41 2022
+# Load=81/8192=1%, Rehash=0, Collisions=0/115=0%
+# Finished Make data base on Sat May  7 18:47:52 2022
 
  
