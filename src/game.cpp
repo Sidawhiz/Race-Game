@@ -97,7 +97,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
     isRunning = true;
 
-    if (!Connect("127.0.0.2", 60000))
+    if (!Connect("127.0.0.1", 60000))
     {
         std::cout << "Couldn't connect to server\n";
     }

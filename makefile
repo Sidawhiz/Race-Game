@@ -1,4 +1,4 @@
-TARGET_EXEC_CLIENT ?= game
+TARGET_EXEC_CLIENT ?= race_game
 TARGET_EXEC_SERVER ?= server
 
 BUILD_DIR_CLIENT ?= ./build-game
