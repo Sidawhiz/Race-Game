@@ -3,9 +3,11 @@ A 2-player game is a race between 2 contestants competing against each other in 
 
 #### Instructions to run
 1. Type `make` in the terminal to compile the files.
-2. This will generate two executable files namely `game` and `server`
+2. This will generate two executable files namely `server` and `race_game`
 3. Then, run `./server` in the terminal.
-4. Once game is over, close the server.
+4. Open a new terminal and run the game executable using `./race_game`.
+5. This will open the terminal for a player.
+6. Once game is over, close the server.
 
 #### Instructions to install asio
 1. Download asio from the link https://think-async.com/Asio/ based on your OS. Extract it in a folder of your choice.
